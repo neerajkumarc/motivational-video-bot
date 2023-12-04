@@ -1,7 +1,7 @@
 from moviepy.editor import ImageClip, TextClip, CompositeVideoClip, AudioFileClip
 from breaklines import break_into_lines
 
-def video_maker(image, text, audio):
+def video_maker(image, text, audio, outputPath):
     audio_clip = AudioFileClip(audio)
     background_image_clip = ImageClip(image, duration=audio_clip.duration)
     text_to_add = break_into_lines(text, 40)
@@ -11,4 +11,4 @@ def video_maker(image, text, audio):
 
     final_clip = CompositeVideoClip([background_image_clip, text_clip.set_audio(audio_clip)])
 
-    final_clip.write_videofile("export.mp4", codec='libx264', audio_codec='aac', fps=1)
+    final_clip.write_videofile(outputPath, codec='libx264', audio_codec='aac', fps=1)

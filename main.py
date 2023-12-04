@@ -7,6 +7,12 @@ from video_maker import video_maker
 imagesPath = "./assets/images/"
 audioPath = "./assets/audio/"
 quotesPath = "./assets/quotes/"
+outputPath = "./exports/"
+
+#create a output directory
+if not (os.path.exists(outputPath)):
+    os.mkdir(outputPath)
+
 
 # load a random quote
 f = open(f"{quotesPath}{random.choice(os.listdir(quotesPath))}")
@@ -19,7 +25,7 @@ audio = f"{audioPath}{random.choice(os.listdir(audioPath))}"
 # load a random image
 image = f"{imagesPath}{random.choice(os.listdir(imagesPath))}"
 
-video_maker(image, text, audio)
+video_maker(image, text, audio, f'{outputPath}/test.mp4')
 
 
 
