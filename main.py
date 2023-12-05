@@ -14,19 +14,30 @@ if not (os.path.exists(outputPath)):
     os.mkdir(outputPath)
 
 
-# load a random quote
-f = open(f"{quotesPath}{random.choice(os.listdir(quotesPath))}")
-data = json.load(f)
-text = (data['quotes'][random.randint(0,(len(data['quotes'])-1))]['quote'])
 
-# load a random audio
-audio = f"{audioPath}{random.choice(os.listdir(audioPath))}"
+print("\n",45*"-","\n \tWelcome To Motivational Video Bot","\n","-"*45,"\n")
 
-# load a random image
-image = f"{imagesPath}{random.choice(os.listdir(imagesPath))}"
+while True:
+    num_of_vid = int(input("Enter the number of videos you want to create (1-10): "))
+    if num_of_vid >= 1 and num_of_vid <= 10:
+        break
+    else:
+        print("Invalid input. Please enter a value between 1 and 10.")
 
-video_maker(image, text, audio, f'{outputPath}/test.mp4')
+for i in range(num_of_vid):
+    # load a random quote
+    f = open(f"{quotesPath}{random.choice(os.listdir(quotesPath))}")
+    data = json.load(f)
+    text = (data['quotes'][random.randint(0,(len(data['quotes'])-1))]['quote'])
 
+    # load a random audio
+    audio = f"{audioPath}{random.choice(os.listdir(audioPath))}"
+
+    # load a random image
+    image = f"{imagesPath}{random.choice(os.listdir(imagesPath))}"
+
+    #vide creation
+    video_maker(image, text, audio, f'{outputPath}/video{i+1}.mp4')
 
 
 
